@@ -14,10 +14,11 @@ struct Team1StatsView: View {
     var team: String
     var criteria1: KeyValue
     var shotSelection: [Shot]
+    @State var phase: Int
     
     @State private var totalShots = 0
     @State private var criteria2 = ""
-    @State var phase: Int
+    @State private var shootingPercentage = 0.0
     
     @State private var newShots = [Shot]()
     
@@ -57,16 +58,36 @@ VStack {
             
         Button {
             
+            getSP()
+            
         } label: {
             Text("Load Data")
         }
 
         
     }.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
+    
+    Text("Shooting Percentage: "+String(shootingPercentage)+"%")
         
-}//vstack
+}.navigationTitle(criteria1.key+": "+String(criteria1.value))
+//vstack
 }//geometry
 }//body
+    
+func getSP() -> Void {
+    
+    var goals = 0.0
+    
+    for shot in shotSelection {
+        
+        if(shot.result == 1) {
+            goals += 1
+        }
+    }
+    
+    shootingPercentage = Double(goals/Double(shotSelection.count))*100
+}
+    
 }//struct
 
 struct Team1StatsView_Previews: PreviewProvider {
