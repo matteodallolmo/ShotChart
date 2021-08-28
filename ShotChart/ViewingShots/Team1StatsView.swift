@@ -67,7 +67,7 @@ VStack {
         
     }.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
     
-    Text("Shooting Percentage: "+String(shootingPercentage)+"%")
+    Text("Shooting Percentage: "+String(shootingPercentage.rounded())+"%")
         
 }.navigationTitle(criteria1.key+": "+String(criteria1.value))
 //vstack

@@ -55,32 +55,30 @@ struct Team0StatsView: View {
     var body: some View {
 GeometryReader { geometry in
 VStack() {
-/*Form {
+Form {
     Picker(selection: $criteria1, label: Text("Sort By"), content: {
         Text("Position").tag("Position")
         Text("Type").tag("Type")
         Text("Location").tag("Location")
     })
-    if(criteria1 == 1) {
+    if(criteria1 == "Position") {
     Picker(selection: $phase, label: Text("Select Phase of Game"), content: {
         Text("6v6").tag(1)
         Text("6v5").tag(2)
     }).pickerStyle(SegmentedPickerStyle())
     }
-    
+     
+     Button {
+         retrieveCriteria(team: team, criteria: criteria1)
+     } label: {
+         Text("Load Data")
+     }
 
-    
-}.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)*/
+}.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
 //form
 ScrollView {
 if(criteria1 == "Position" && phase == 1) {
 VStack(spacing: 10) {
-    
-    Button {
-        retrieveCriteria(team: team, criteria: criteria1)
-    } label: {
-        Text("Load Data")
-    }
     
     Text("Total Shots: "+String(totalShots))
     
