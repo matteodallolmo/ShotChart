@@ -1,23 +1,22 @@
 //
-//  Team1StatsView.swift
+//  Team2StatsView.swift
 //  ShotChart
 //
-//  Created by Matteo Dall'Olmo on 8/26/21.
+//  Created by Matteo Dall'Olmo on 8/29/21.
 //
 
 import SwiftUI
-import Firebase
-import FirebaseFirestore
 
-struct Team1StatsView: View {
+struct Team2StatsView: View {
     
     var team: String
     var criteria1: KeyValue
+    var criteria2: KeyValue
     var shotSelection: [Shot]
     @State var phase: Int
     
     @State private var totalShots = 0
-    @State private var criteria2 = "None"
+    @State private var criteria3 = "None"
     @State private var shootingPercentage = 0.0
     
     @State private var one = [Shot]()
@@ -55,7 +54,7 @@ struct Team1StatsView: View {
     @State private var fourLoc = [Shot]()
     @State private var fiveLoc = [Shot]()
     
-    var title: String {
+    var title1: String {
         if(criteria1.key == "Type" && criteria1.value == 1)
         {
             return "Direct"
@@ -102,6 +101,53 @@ struct Team1StatsView: View {
         }
         return String(criteria1.value)
     }
+    var title2: String {
+        if(criteria2.key == "Type" && criteria2.value == 1)
+        {
+            return "Direct"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 2)
+        {
+            return "Catch & Shoot"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 3)
+        {
+            return "Fake"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 4)
+        {
+            return "Drive"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 5)
+        {
+            return "Pick Up"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 6)
+        {
+            return "Backhand"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 7)
+        {
+            return "Quick 6v5"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 8)
+        {
+            return "Overpass"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 9)
+        {
+            return "Skip"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 10)
+        {
+            return "Lob"
+        }
+        if(criteria2.key == "Type" && criteria2.value == 11)
+        {
+            return "Transition"
+        }
+        return String(criteria2.value)
+    }
     
 var body: some View {
         
@@ -109,31 +155,28 @@ GeometryReader { geometry in
 VStack {
     Form {
         
-        if(criteria1.key == "Position") {
-        Picker(selection: $criteria2, label: Text("Sort By"), content: {
+        if((criteria1.key == "Position" || criteria2 == "Position") && (criteria1.key == "Type" || criteria2 == "Type")) {
+        Picker(selection: $criteria3, label: Text("Sort By"), content: {
             Text("None").tag("None")
-            Text("Type").tag("Type")
             Text("Location").tag("Location")
         })
         }
         
-        else if(criteria1.key == "Type") {
-            Picker(selection: $criteria2, label: Text("Sort By"), content: {
-                Text("None").tag("None")
-                Text("Position").tag("Position")
-                Text("Location").tag("Location")
-            })
+        if((criteria1.key == "Position" || criteria2 == "Position") && (criteria1.key == "Location" || criteria2 == "Location")) {
+        Picker(selection: $criteria3, label: Text("Sort By"), content: {
+            Text("None").tag("None")
+            Text("Type").tag("Type")
+        })
         }
         
         else {
-            Picker(selection: $criteria2, label: Text("Sort By"), content: {
+            Picker(selection: $criteria3, label: Text("Sort By"), content: {
                 Text("None").tag("None")
                 Text("Position").tag("Position")
-                Text("Type").tag("Type")
             })
         }
         
-        if(criteria2 == "Position") {
+        if(criteria3 == "Position") {
             Picker(selection: $phase, label: Text("Select Phase of Game"), content: {
                 Text("6v6").tag(1)
                 Text("6v5").tag(2)
@@ -151,196 +194,196 @@ VStack {
     Text("Shooting Percentage: "+String(shootingPercentage.rounded())+"%")
     
     ScrollView {
-    if(criteria2 == "Position" && phase == 1) {
+    if(criteria3 == "Position" && phase == 1) {
     VStack(spacing: 10) {
         
         Text("Total Shots: "+String(totalShots))
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 1), shotSelection: one, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 1, shotsTaken: one.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: one, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 2, shotsTaken: two.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 3), shotSelection: one, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 3, shotsTaken: three.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 4), shotSelection: one, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 4, shotsTaken: four.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 5), shotSelection: one, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 5, shotsTaken: five.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 6), shotSelection: one, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 6, shotsTaken: six.count)
             })
     }//criteria vstack
     }//if criteria1
-    else if(criteria2 == "Position" && phase == 2)
+    else if(criteria3 == "Position" && phase == 2)
     {
     VStack(spacing: 10) {
         
         Text("Total Shots: "+String(totalShots))
             
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 1), shotSelection: oneUP, phase: 2),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 1, shotsTaken: oneUP.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: twoUP, phase: 2),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 2, shotsTaken: twoUP.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 3), shotSelection: threeUP, phase: 2),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 3, shotsTaken: threeUP.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 4), shotSelection: fourUP, phase: 2),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 4, shotsTaken: fourUP.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 5), shotSelection: fiveUP, phase: 2),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 5, shotsTaken: fiveUP.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 6), shotSelection: sixUP, phase: 2),
+            destination: Team3StatsView(),
             label: {
                 PositionStatView(num: 6, shotsTaken: sixUP.count)
             })
     }//criteria vstack
     }//else phase 2
         
-    else if(criteria2 == "Type") {
+    else if(criteria3 == "Type") {
     VStack(spacing: 10) {
         
         Group {
         Text("Total Shots: "+String(totalShots))
             
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 1), shotSelection: direct, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 1, shotsTaken: direct.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: cass, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 2, shotsTaken: cas.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 3), shotSelection: fake, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 3, shotsTaken: fake.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 4), shotSelection: drive, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 4, shotsTaken: drive.count)
             })
         }
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 5), shotSelection: pickup, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 5, shotsTaken: pickup.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 6), shotSelection: backhand, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 6, shotsTaken: backhand.count)
             })
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 7), shotSelection: quick6v5, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 7, shotsTaken: quick6v5.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 8), shotSelection: overpass, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 8, shotsTaken: overpass.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 9), shotSelection: skip, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 9, shotsTaken: skip.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 10), shotSelection: lob, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 10, shotsTaken: lob.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 11), shotSelection: transition, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 TypeStatView(num: 11, shotsTaken: transition.count)
             })
     }//criteria vstack
     }//if criteria1
-    if(criteria2 == "Location") {
+    if(criteria3 == "Location") {
     VStack(spacing: 10) {
         
         Text("Total Shots: "+String(totalShots))
             
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 1), shotSelection: oneLoc, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 LocationStatView(num: 1, shotsTaken: oneLoc.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: twoLoc, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 LocationStatView(num: 2, shotsTaken: twoLoc.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 3), shotSelection: threeLoc, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 LocationStatView(num: 3, shotsTaken: threeLoc.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 4), shotSelection: fourLoc, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 LocationStatView(num: 4, shotsTaken: fourLoc.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 5), shotSelection: fiveLoc, phase: 1),
+            destination: Team3StatsView(),
             label: {
                 LocationStatView(num: 5, shotsTaken: fiveLoc.count)
             })
@@ -350,10 +393,10 @@ VStack {
             .font(.title)
             .padding(.vertical)
         
-        ResultsTable(team: team, criteria1: criteria1, criteria2: nil, criteria3: nil)
+        ResultsTable(team: team, criteria1: criteria1, criteria2: criteria2, criteria3: nil)
     }//scrollview
         
-}.navigationTitle(criteria1.key+": "+title)
+}.navigationTitle(Text(criteria1.key+": "+title1+criteria2.key+": "+title2).lineLimit(nil))
 //vstack
 }//geometry
 }//body
@@ -370,7 +413,7 @@ func loadData() -> Void {
     }
     shootingPercentage = Double(goals/Double(shotSelection.count))*100
     
-    if(criteria2 == "Position" && phase == 1)
+    if(criteria3 == "Position" && phase == 1)
     {
         for shot in shotSelection
         {
@@ -401,7 +444,7 @@ func loadData() -> Void {
         }
         totalShots = one.count+two.count+three.count+four.count+five.count+six.count
     }//if end
-    else if(criteria2 == "Position" && phase == 2)
+    else if(criteria3 == "Position" && phase == 2)
     {
         for shot in shotSelection
         {
@@ -432,7 +475,7 @@ func loadData() -> Void {
         }
         totalShots = oneUP.count+twoUP.count+threeUP.count+fourUP.count+fiveUP.count+sixUP.count
     }//else if end
-    else if(criteria2 == "Type")
+    else if(criteria3 == "Type")
     {
         for shot in shotSelection
         {
@@ -483,7 +526,7 @@ func loadData() -> Void {
         }
         totalShots = direct.count+cas.count+fake.count+drive.count+pickup.count+backhand.count+quick6v5.count+overpass.count+skip.count+lob.count+transition.count
     }//else if end
-    else if(criteria2 == "Location")
+    else if(criteria3 == "Location")
     {
         for shot in shotSelection
         {
@@ -513,9 +556,3 @@ func loadData() -> Void {
 }//func end
     
 }//struct
-
-struct Team1StatsView_Previews: PreviewProvider {
-    static var previews: some View {
-        Team1StatsView(team: "Loyola", criteria1: KeyValue(key: "Position", value: 1), shotSelection: [Shot](), phase: 1)
-    }
-}

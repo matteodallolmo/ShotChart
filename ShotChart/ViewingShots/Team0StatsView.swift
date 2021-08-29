@@ -260,13 +260,13 @@ VStack(spacing: 10) {
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 1), shotSelection: fourLoc, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 4), shotSelection: fourLoc, phase: 1),
         label: {
             LocationStatView(num: 4, shotsTaken: fourLoc.count)
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 1), shotSelection: fiveLoc, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 5), shotSelection: fiveLoc, phase: 1),
         label: {
             LocationStatView(num: 5, shotsTaken: fiveLoc.count)
         })
@@ -495,69 +495,4 @@ func retrieveCriteria(team: String, criteria: String) -> Void
 
     }//if end
 }//func end
-   /*
-    func getSH(position: Int) -> Void {
-        
-        if(position == 1)
-        {
-            for shot in self.one {
-                if shot.result == 1 { self.oneScored += 1 }
-                self.oneTaken += 1
-            }
-            
-            if(oneTaken == 0) { self.oneSP = 0; return }
-            self.oneSP = Double(self.oneScored/self.oneTaken)
-        }
-        if(position == 2)
-        {
-            for shot in self.two {
-                if shot.result == 1 { self.twoScored += 1 }
-                self.twoTaken += 1
-            }
-            
-            if(twoTaken == 0) { self.twoSP = 0; return }
-            self.twoSP = Double(self.twoScored/self.twoTaken)
-        }
-        if(position == 3)
-        {
-            for shot in self.three {
-                if shot.result == 1 { self.threeScored += 1 }
-                self.threeTaken += 1
-            }
-            
-            if(threeTaken == 0) { self.threeSP = 0; return }
-            self.threeSP = Double(self.threeScored/self.threeTaken)
-        }
-        if(position == 4)
-        {
-            for shot in self.four {
-                if shot.result == 1 { self.fourScored += 1 }
-                self.fourTaken += 1
-            }
-            
-            if(fourTaken == 0) { self.fourSP = 0; return }
-            self.fourSP = Double(self.fourScored/self.fourTaken)
-        }
-        if(position == 5)
-        {
-            for shot in self.five {
-                if shot.result == 1 { self.fiveScored += 1 }
-                self.fiveTaken += 1
-            }
-            
-            if(fiveTaken == 0) { self.fiveSP = 0; return }
-            self.fiveSP = Double(self.fiveScored/self.fiveTaken)
-        }
-        if(position == 6)
-        {
-            for shot in self.six {
-                if shot.result == 1 { self.sixScored += 1 }
-                self.sixTaken += 1
-            }
-            
-            if(sixTaken == 0) { self.sixSP = 0; return }
-            self.sixSP = Double(self.sixScored/self.sixTaken)
-        }
-    }
-    */
 }//struct
