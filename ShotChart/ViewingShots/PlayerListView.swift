@@ -16,9 +16,9 @@ struct PlayerListView: View {
     
     List(players, id: \.self) { player in
     NavigationLink(
-        destination: Text("hello"),
+        destination: Player0StatsView(team: team, num: Int(player)!),
         label: {
-            Text("Player #"+player)
+            Text("#"+player)
         })
     }
     .navigationTitle("Players")

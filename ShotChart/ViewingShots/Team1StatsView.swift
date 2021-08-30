@@ -343,7 +343,7 @@ VStack {
             })
     }//criteria vstack
     }//if criteria2
-        ResultsTable(team: team, criteria1: criteria1, criteria2: nil, criteria3: nil, phase: phase)
+        TeamResultsTable(team: team, criteria1: criteria1, criteria2: nil, criteria3: nil, phase: phase)
     }//scrollview*/
         
 }.navigationTitle(criteria1.key+": "+title)

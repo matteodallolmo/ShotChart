@@ -272,7 +272,7 @@ VStack(spacing: 10) {
         })
 }//criteria vstack
 }//if criteria1
-    ResultsTable(team: team, criteria1: nil, criteria2: nil, criteria3: nil, phase: phase)
+    TeamResultsTable(team: team, criteria1: nil, criteria2: nil, criteria3: nil, phase: phase)
 }//scrollview
 }.navigationTitle(team + " Team Stats")//vstack
 }//geometry

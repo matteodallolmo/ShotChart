@@ -172,7 +172,7 @@ var body: some View {
         
 GeometryReader { geometry in
     ScrollView {
-        ResultsTable(team: team, criteria1: criteria1, criteria2: criteria2, criteria3: criteria3, phase: phase)
+        TeamResultsTable(team: team, criteria1: criteria1, criteria2: criteria2, criteria3: criteria3, phase: phase)
     }.navigationTitle(totalTitle)
 //vstack
 }//geometry
