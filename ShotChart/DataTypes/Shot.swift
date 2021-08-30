@@ -23,7 +23,7 @@ struct Shot {
         location = dict["Location"] as! Int
         phase = dict["Phase"] as! Int
         result = dict["Result"] as! Int
-        source = dict["Source"] as! Int
+        source = dict["Position"] as! Int
         type = dict["Type"] as! Int
     }
     

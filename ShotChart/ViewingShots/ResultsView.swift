@@ -15,9 +15,16 @@ struct ResultsTable: View {
     var criteria1: KeyValue?
     var criteria2: KeyValue?
     var criteria3: KeyValue?
+    var phase: Int
     
     //@State private var fields = ["Goals", "Field Blocks", "Missed Goal", "Tip Outs", "Goalie Blocks", "Beat Field Blocks"]
     
+    var shootingPercentage: Double {
+        let goals = Double(goal.count)
+        let shots = Double(goal.count+fieldBlock.count+missGoal.count+tipOut.count+goalieBlock.count+beatFB.count)
+        
+        return (goals/shots)*100
+    }
     @State private var goal = [Shot]()
     @State private var fieldBlock = [Shot]()
     @State private var missGoal = [Shot]()
@@ -28,6 +35,12 @@ struct ResultsTable: View {
     var body: some View {
         
         VStack(spacing: 0) {
+            
+            Text("Results")
+                .font(.title)
+                .padding(.top)
+            
+            Text("Shooting Percentage: "+String(shootingPercentage.rounded())+"%")
             
             ResultStatView(num: 1, shotsTaken: goal.count)
             
@@ -47,7 +60,7 @@ struct ResultsTable: View {
     
     
     func getData() -> Void {
-
+        
         let db = Firestore.firestore()
         
         if(criteria1 != nil)
@@ -59,6 +72,7 @@ struct ResultsTable: View {
                     for n in 1...6 {
                         db.collectionGroup(team+"Shots")
                             .whereField("Result", isEqualTo: n)
+                            .whereField("Phase", isEqualTo: phase)
                             .whereField(criteria1!.key, isEqualTo: criteria1!.value)
                             .whereField(criteria2!.key, isEqualTo: criteria2!.value)
                             .whereField(criteria3!.key, isEqualTo: criteria3!.value).getDocuments { snapshot, error in
@@ -109,6 +123,7 @@ struct ResultsTable: View {
                 for n in 1...6 {
                     db.collectionGroup(team+"Shots")
                         .whereField("Result", isEqualTo: n)
+                        .whereField("Phase", isEqualTo: phase)
                         .whereField(criteria1!.key, isEqualTo: criteria1!.value)
                         .whereField(criteria2!.key, isEqualTo: criteria2!.value).getDocuments { snapshot, error in
                 
@@ -158,6 +173,7 @@ struct ResultsTable: View {
             for n in 1...6 {
                 db.collectionGroup(team+"Shots")
                     .whereField("Result", isEqualTo: n)
+                    .whereField("Phase", isEqualTo: phase)
                     .whereField(criteria1!.key, isEqualTo: criteria1!.value).getDocuments { snapshot, error in
                 
                 if snapshot != nil
@@ -205,6 +221,7 @@ struct ResultsTable: View {
         
         for n in 1...6 {
         db.collectionGroup(team+"Shots")
+            .whereField("Phase", isEqualTo: phase)
             .whereField("Result", isEqualTo: n).getDocuments { snapshot, error in
             
             if snapshot != nil

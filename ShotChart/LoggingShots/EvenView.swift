@@ -148,7 +148,7 @@ func updateToFirebase() -> Void
             db.collection("teams").document(teamname).setData(["name" : teamname])
         }
         db.collection("teams").document(teamname).collection("players").document(strCapNum).setData(["capNum" : capNum!], merge: true)
-        db.collection("teams").document(teamname).collection("players").document(strCapNum).collection(teamname+"Shots").addDocument(data: ["Location" : location, "Phase" : phase, "Result" : shotResult, "Source" : self.source, "Type" : shotType])
+        db.collection("teams").document(teamname).collection("players").document(strCapNum).collection(teamname+"Shots").addDocument(data: ["Location" : location, "Phase" : phase, "Result" : shotResult, "Position" : self.source, "Type" : shotType])
     }
     }
 }

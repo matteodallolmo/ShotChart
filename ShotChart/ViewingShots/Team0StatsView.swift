@@ -272,11 +272,7 @@ VStack(spacing: 10) {
         })
 }//criteria vstack
 }//if criteria1
-    Text("Results")
-        .font(.title)
-        .padding(.vertical)
-    
-    ResultsTable(team: team, criteria1: nil, criteria2: nil, criteria3: nil)
+    ResultsTable(team: team, criteria1: nil, criteria2: nil, criteria3: nil, phase: phase)
 }//scrollview
 }.navigationTitle(team + " Team Stats")//vstack
 }//geometry
@@ -290,7 +286,9 @@ func retrieveCriteria(team: String, criteria: String) -> Void
     
     if(phase == 1) {
     for n in 1...6 {
-    db.collectionGroup(team+"Shots").whereField("Phase", isEqualTo: 1).whereField("Source", isEqualTo: n).getDocuments { snapshot, error in
+    db.collectionGroup(team+"Shots")
+        .whereField("Phase", isEqualTo: 1)
+        .whereField("Position", isEqualTo: n).getDocuments { snapshot, error in
         
         if(snapshot != nil && error == nil)
         {
@@ -336,7 +334,9 @@ func retrieveCriteria(team: String, criteria: String) -> Void
     
     else {
     for n in 1...6 {
-        db.collectionGroup(team+"Shots").whereField("Phase", isEqualTo: 2).whereField("Source", isEqualTo: n).getDocuments { snapshot, error in
+        db.collectionGroup(team+"Shots")
+            .whereField("Phase", isEqualTo: 2)
+            .whereField("Position", isEqualTo: n).getDocuments { snapshot, error in
         
         if(snapshot != nil && error == nil)
         {

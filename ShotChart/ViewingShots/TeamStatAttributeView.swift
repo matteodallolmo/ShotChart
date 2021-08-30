@@ -153,7 +153,7 @@ struct ResultStatView: View {
                 .fixedSize(horizontal: true, vertical: false)
             }
             if(num == 3) {
-            Text("Miss Out")
+            Text("Missed Goal")
                 .fontWeight(.thin)
                 .font(.title)
                 .padding(.leading, 20)

@@ -18,7 +18,6 @@ struct Team1StatsView: View {
     
     @State private var totalShots = 0
     @State private var criteria2 = "None"
-    @State private var shootingPercentage = 0.0
     
     @State private var one = [Shot]()
     @State private var two = [Shot]()
@@ -148,8 +147,6 @@ VStack {
 
     }.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
     
-    Text("Shooting Percentage: "+String(shootingPercentage.rounded())+"%")
-    
     ScrollView {
     if(criteria2 == "Position" && phase == 1) {
     VStack(spacing: 10) {
@@ -163,31 +160,31 @@ VStack {
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: one, phase: 1),
+            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: two, phase: 1),
             label: {
                 PositionStatView(num: 2, shotsTaken: two.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 3), shotSelection: one, phase: 1),
+            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 3), shotSelection: three, phase: 1),
             label: {
                 PositionStatView(num: 3, shotsTaken: three.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 4), shotSelection: one, phase: 1),
+            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 4), shotSelection: four, phase: 1),
             label: {
                 PositionStatView(num: 4, shotsTaken: four.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 5), shotSelection: one, phase: 1),
+            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 5), shotSelection: five, phase: 1),
             label: {
                 PositionStatView(num: 5, shotsTaken: five.count)
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 6), shotSelection: one, phase: 1),
+            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 6), shotSelection: six, phase: 1),
             label: {
                 PositionStatView(num: 6, shotsTaken: six.count)
             })
@@ -250,7 +247,7 @@ VStack {
             })
         
         NavigationLink(
-            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: cass, phase: 1),
+            destination: Team2StatsView(team: team, criteria1: criteria1, criteria2: KeyValue(key: criteria2, value: 2), shotSelection: cas, phase: 1),
             label: {
                 TypeStatView(num: 2, shotsTaken: cas.count)
             })
@@ -346,12 +343,8 @@ VStack {
             })
     }//criteria vstack
     }//if criteria2
-        Text("Results")
-            .font(.title)
-            .padding(.vertical)
-        
-        ResultsTable(team: team, criteria1: criteria1, criteria2: nil, criteria3: nil)
-    }//scrollview
+        ResultsTable(team: team, criteria1: criteria1, criteria2: nil, criteria3: nil, phase: phase)
+    }//scrollview*/
         
 }.navigationTitle(criteria1.key+": "+title)
 //vstack
@@ -359,16 +352,6 @@ VStack {
 }//body
     
 func loadData() -> Void {
-    
-    var goals = 0.0
-    
-    for shot in shotSelection {
-        
-        if(shot.result == 1) {
-            goals += 1
-        }
-    }
-    shootingPercentage = Double(goals/Double(shotSelection.count))*100
     
     if(criteria2 == "Position" && phase == 1)
     {
