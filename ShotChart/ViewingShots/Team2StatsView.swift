@@ -193,7 +193,7 @@ Form {
             Text("Load Data")
         }
 
-    }.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
+    }.frame(width: geometry.size.width, height: geometry.size.height/4, alignment: .center)
         
     ScrollView {
     if(criteria3 == "Position" && phase == 1) {

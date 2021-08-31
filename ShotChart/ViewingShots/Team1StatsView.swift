@@ -145,7 +145,7 @@ VStack {
             Text("Load Data")
         }
 
-    }.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
+    }.frame(width: geometry.size.width, height: geometry.size.height/4, alignment: .center)
     
     ScrollView {
     if(criteria2 == "Position" && phase == 1) {

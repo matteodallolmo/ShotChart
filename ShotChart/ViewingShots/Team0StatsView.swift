@@ -74,7 +74,7 @@ Form {
          Text("Load Data")
      }
 
-}.frame(width: geometry.size.width, height: geometry.size.height/4.8, alignment: .center)
+}.frame(width: geometry.size.width, height: geometry.size.height/4, alignment: .center)
 //form
 ScrollView {
 if(criteria1 == "Position" && phase == 1) {
@@ -126,37 +126,37 @@ VStack(spacing: 10) {
     Text("Total Shots: "+String(totalShots))
         
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 1), shotSelection: oneUP, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 1), shotSelection: oneUP, phase: 2),
         label: {
             PositionStatView(num: 1, shotsTaken: oneUP.count)
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 2), shotSelection: twoUP, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 2), shotSelection: twoUP, phase: 2),
         label: {
             PositionStatView(num: 2, shotsTaken: twoUP.count)
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 3), shotSelection: threeUP, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 3), shotSelection: threeUP, phase: 2),
         label: {
             PositionStatView(num: 3, shotsTaken: threeUP.count)
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 4), shotSelection: fourUP, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 4), shotSelection: fourUP, phase: 2),
         label: {
             PositionStatView(num: 4, shotsTaken: fourUP.count)
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 5), shotSelection: fiveUP, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 5), shotSelection: fiveUP, phase: 2),
         label: {
             PositionStatView(num: 5, shotsTaken: fiveUP.count)
         })
     
     NavigationLink(
-        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 6), shotSelection: sixUP, phase: 1),
+        destination: Team1StatsView(team: team, criteria1: KeyValue(key: criteria1, value: 6), shotSelection: sixUP, phase: 2),
         label: {
             PositionStatView(num: 6, shotsTaken: sixUP.count)
         })
@@ -274,7 +274,7 @@ VStack(spacing: 10) {
 }//if criteria1
     TeamResultsTable(team: team, criteria1: nil, criteria2: nil, criteria3: nil, phase: phase)
 }//scrollview
-}.navigationTitle(team + " Team Stats")//vstack
+}.navigationTitle(team)//vstack
 }//geometry
 }//body
     
